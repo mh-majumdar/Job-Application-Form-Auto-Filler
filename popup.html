@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 400px;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+    h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    .tab-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #e0e0e0;
+    }
+    .tab-button {
+      padding: 10px 20px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 14px;
+      color: #666;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+    }
+    .tab-button.active {
+      color: #2196F3;
+      border-bottom-color: #2196F3;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #555;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .save-btn {
+      background-color: #4CAF50;
+      color: white;
+      width: 100%;
+      margin-top: 10px;
+    }
+    .save-btn:hover {
+      background-color: #45a049;
+    }
+    .fill-btn {
+      background-color: #2196F3;
+      color: white;
+      width: 100%;
+      font-size: 16px;
+      padding: 15px;
+    }
+    .fill-btn:hover {
+      background-color: #0b7dda;
+    }
+    .status {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 4px;
+      text-align: center;
+      display: none;
+    }
+    .status.success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .status.error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    .add-field-btn {
+      background-color: #ff9800;
+      color: white;
+      margin-top: 10px;
+    }
+    .custom-field {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .remove-field {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #f44336;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body>
+  <h2>Job Form Auto-Filler</h2>
+  
+  <div class="tab-buttons">
+    <button class="tab-button active" data-tab="fill">Fill Form</button>
+    <button class="tab-button" data-tab="settings">Settings</button>
+  </div>
+
+  <div id="fill-tab" class="tab-content active">
+    <p>Click the button below to auto-fill the current form:</p>
+    <button class="fill-btn" id="fillForm">🚀 Fill Form</button>
+    <div class="status" id="fillStatus"></div>
+  </div>
+
+  <div id="settings-tab" class="tab-content">
+    <form id="settingsForm">
+      <div class="form-group">
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" placeholder="John Doe">
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" placeholder="john.doe@email.com">
+      </div>
+      
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" placeholder="+880 1234567890">
+      </div>
+      
+      <div class="form-group">
+        <label for="university">University Name:</label>
+        <input type="text" id="university" placeholder="University of Dhaka">
+      </div>
+      
+      <div class="form-group">
+        <label for="department">Department/Major:</label>
+        <input type="text" id="department" placeholder="Computer Science">
+      </div>
+      
+      <div class="form-group">
+        <label for="cgpa">CGPA:</label>
+        <input type="text" id="cgpa" placeholder="3.75">
+      </div>
+      
+      <div class="form-group">
+        <label for="graduationYear">Graduation Year:</label>
+        <input type="text" id="graduationYear" placeholder="2024">
+      </div>
+      
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <textarea id="address" placeholder="Your full address"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="linkedIn">LinkedIn Profile:</label>
+        <input type="url" id="linkedIn" placeholder="https://linkedin.com/in/yourprofile">
+      </div>
+      
+      <div class="form-group">
+        <label for="github">GitHub Profile:</label>
+        <input type="url" id="github" placeholder="https://github.com/yourusername">
+      </div>
+
+      <div id="customFields"></div>
+      
+      <button type="button" class="add-field-btn" id="addField">+ Add Custom Field</button>
+      
+      <button type="submit" class="save-btn">💾 Save Information</button>
+      <div class="status" id="saveStatus"></div>
+    </form>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
